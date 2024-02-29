@@ -395,7 +395,7 @@ extension TerminalView {
                     hasUrl = chhas
                 }
             }
-            str.append(ch.code == 0 ? " " : ch.getCharacter ())
+            str.append(ch.code == 0 ? "\u{200B}" : ch.getCharacter ())
         }
         res.append (NSAttributedString(string: str, attributes: getAttributes(attr, withUrl: hasUrl)))
         updateSelectionAttributesIfNeeded(attributedLine: res, row: row, cols: cols)
@@ -635,8 +635,12 @@ extension TerminalView {
                     count = runGlyphsCount
                 }
 
+                let x = [CGPoint](unsafeUninitializedCapacity: runGlyphsCount) { (bufferPointer, count) in
+                    CTRunGetPositions(run, CFRange(), bufferPointer.baseAddress!)
+                    count = runGlyphsCount
+                }
                 var positions = runGlyphs.enumerated().map { (i: Int, glyph: CGGlyph) -> CGPoint in
-                    CGPoint(x: lineOrigin.x + (cellDimension.width * CGFloat(col + i)), y: lineOrigin.y + yOffset)
+                    CGPoint(x: lineOrigin.x + x [i].x , y: lineOrigin.y + yOffset)
                 }
 
                 var backgroundColor: TTColor?
