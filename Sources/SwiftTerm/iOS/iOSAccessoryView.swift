@@ -73,6 +73,7 @@ public class TerminalAccessory: UIInputView, UIInputViewAudioFeedback {
     @objc func slash (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: "/")]) }
     @objc func dash (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: "-")]) }
     @objc func dot (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: ".")]) }
+    @objc func mao (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: ":")]) }
     @objc func f1 (_ sender: AnyObject) { clickAndSend (EscapeSequences.cmdF[0]) }
     @objc func f2 (_ sender: AnyObject) { clickAndSend (EscapeSequences.cmdF[1]) }
     @objc func f3 (_ sender: AnyObject) { clickAndSend (EscapeSequences.cmdF[2]) }
@@ -254,7 +255,7 @@ public class TerminalAccessory: UIInputView, UIInputViewAudioFeedback {
             floatViews.append(makeButton ("~", #selector(tilde)))
             floatViews.append(makeButton ("|", #selector(pipe)))
             floatViews.append(makeButton ("/", #selector(slash)))
-            floatViews.append(makeButton ("-", #selector(dash)))
+            floatViews.append(makeButton (":", #selector(mao)))
             floatViews.append(makeButton (".", #selector(dot)))
         }
         floatViews.forEach {
@@ -312,7 +313,7 @@ return
         }
     }
     
-    var buttonPad = 4.0
+    var buttonPad = 3.0
     public override func layoutSubviews() {
         var x: CGFloat = 2
         let dh = views.reduce (0) { max ($0, $1.frame.size.height )}
