@@ -72,6 +72,7 @@ public class TerminalAccessory: UIInputView, UIInputViewAudioFeedback {
     @objc func pipe (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: "|")]) }
     @objc func slash (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: "/")]) }
     @objc func dash (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: "-")]) }
+    @objc func dot (_ sender: AnyObject) { clickAndSend ([UInt8 (ascii: ".")]) }
     @objc func f1 (_ sender: AnyObject) { clickAndSend (EscapeSequences.cmdF[0]) }
     @objc func f2 (_ sender: AnyObject) { clickAndSend (EscapeSequences.cmdF[1]) }
     @objc func f3 (_ sender: AnyObject) { clickAndSend (EscapeSequences.cmdF[2]) }
@@ -254,6 +255,7 @@ public class TerminalAccessory: UIInputView, UIInputViewAudioFeedback {
             floatViews.append(makeButton ("|", #selector(pipe)))
             floatViews.append(makeButton ("/", #selector(slash)))
             floatViews.append(makeButton ("-", #selector(dash)))
+            floatViews.append(makeButton (".", #selector(dot)))
         }
         floatViews.forEach {
             setMinWidth ($0, isImportantKey: true)
